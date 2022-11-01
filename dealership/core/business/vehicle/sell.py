@@ -22,7 +22,6 @@ class SellVehicle(Core):
                 session.query(Owner)
                 .filter(Owner.client_id == data.client_id)
                 .filter(Owner.company_id == None)
-                .filter(Owner.vehicle_id.in_(data.vehicles))
                 .all()
             )
             if len(owners) + len(data.vehicles) > 3:
@@ -46,7 +45,6 @@ class SellVehicle(Core):
                 session.query(Owner.vehicle_id)
                 .filter(Owner.client_id == data.client_id)
                 .filter(Owner.company_id == None)
-                .filter(Owner.vehicle_id.in_(data.vehicles))
                 .all()
             )
             vehicles = [vehicle.vehicle_id for vehicle in vehicles]
