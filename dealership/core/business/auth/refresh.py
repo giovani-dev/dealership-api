@@ -10,6 +10,7 @@ from dealership.app.dto.callback import Callback, Error
 from dealership.app.settings import Settings
 from jose import jwt
 from jose.constants import ALGORITHMS
+from jose.exceptions import ExpiredSignatureError
 
 
 class Refresh(Core):
@@ -17,13 +18,25 @@ class Refresh(Core):
         self, data: CredentialsDto
     ) -> Callback[List[Error] | CredentialsDto]:
         token = jwt.decode(
-            token=data.token, key=Settings.JWT_SECRET_KEY, algorithms=ALGORITHMS.HS512
-        )
-        refresh_token = jwt.decode(
-            token=data.refresh_token,
+            token=data.token,
+            options={"verify_signature": False},
             key=Settings.JWT_SECRET_KEY,
-            algorithms=ALGORITHMS.HS512,
         )
+        try:
+            refresh_token = jwt.decode(
+                token=data.refresh_token,
+                key=Settings.JWT_SECRET_KEY,
+                algorithms=ALGORITHMS.HS512,
+            )
+        except ExpiredSignatureError:
+            return Callback(
+                content=Error(
+                    loc=["refresh_token"],
+                    msg="Refresh token expired",
+                    type=ErrorType.InvalidInput.value,
+                ),
+                status_code=CallbackStatus.Forbiden,
+            )
         if (
             refresh_token["type"] != "refresh"
             or token["type"] != "token"
@@ -33,16 +46,6 @@ class Refresh(Core):
                 content=Error(
                     loc=[["token"], ["refresh_token"]],
                     msg="Invalid credentials",
-                    type=ErrorType.InvalidInput.value,
-                ),
-                status_code=CallbackStatus.Forbiden,
-            )
-        now = datetime.timestamp(datetime.now())
-        if refresh_token["exp"] < now:
-            return Callback(
-                content=Error(
-                    loc=["refresh_token"],
-                    msg="Refresh token expired",
                     type=ErrorType.InvalidInput.value,
                 ),
                 status_code=CallbackStatus.Forbiden,
