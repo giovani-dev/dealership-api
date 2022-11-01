@@ -1,0 +1,331 @@
+{
+	"info": {
+		"_postman_id": "b89942f7-ddba-419b-9499-09c65fac808d",
+		"name": "Auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11940350"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"Aiyana.Green@hotmail.com\",\r\n    \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/auth/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Login with invalid credentials",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"Jamar.Abshire@yahoo.com\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "UNAUTHORIZED",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 15:14:43 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "88"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"loc\": [\n        [\n            \"email\"\n        ],\n        [\n            \"password\"\n        ]\n    ],\n    \"msg\": \"Invalid user\",\n    \"type\": \"validation.invalid_input\"\n}"
+				},
+				{
+					"name": "Login with invalid e-mail",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"Jamar.Abshireyahoo.com\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "UNPROCESSABLE ENTITY",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 15:15:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "90"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"loc\": [\n            \"email\"\n        ],\n        \"msg\": \"value is not a valid email address\",\n        \"type\": \"value_error.email\"\n    }\n]"
+				},
+				{
+					"name": "Login successful",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"Tyreek_Zulauf@gmail.com\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 15:16:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "580"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"refresh_token\": \"eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoicmVmcmVzaCIsInRva2VuX2lkIjoiNjM4NTVkZmItMDc3MC00Njc2LTllMGEtY2EzNmI0ZWVlNTlhIiwidXNlciI6MTA1LCJleHAiOjE2NjczMzczNzEuODA5MDMzfQ.O673GrdwfMYfKG43YFdbYI1aU6abGQwa3gxFKcMloHpPVhrL9ES4zj9XSR8WyaUfpLT4BBGH79JGuT-yUIUyag\",\n    \"token\": \"eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoidG9rZW4iLCJ0b2tlbl9pZCI6IjYzODU1ZGZiLTA3NzAtNDY3Ni05ZTBhLWNhMzZiNGVlZTU5YSIsImNsYWltcyI6WyJDb21wYW55Il0sInVzZXIiOjEwNSwiZXhwIjoxNjY3MzI2NTcxLjgwODc4fQ.i7r00i95pTgomg85DRA3sHV0SXwi4zXQ7uKrGMbV_FlRS-rpw0GddDzbYHPvem-XdUPlITkbqOPOBRSk-XAdsQ\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Refresh",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"refresh_token\": \"{{refresh-token}}\",\r\n    \"token\": \"{{token}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/auth/refresh",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"auth",
+						"refresh"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Refresh refrsh token has ben expired",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh_token\": \"{{refresh-token}}\",\r\n    \"token\": \"{{token}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/refresh",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"status": "FORBIDDEN",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 15:57:17 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "90"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"loc\": [\n        \"refresh_token\"\n    ],\n    \"msg\": \"Refresh token expired\",\n    \"type\": \"validation.invalid_input\"\n}"
+				},
+				{
+					"name": "Refresh successful",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh_token\": \"{{refresh-token}}\",\r\n    \"token\": \"{{token}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/refresh",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 15:58:43 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "581"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"refresh_token\": \"eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoicmVmcmVzaCIsInRva2VuX2lkIjoiNDE0YjIwNGItZjY0ZS00YjI1LWEyOTktYzA2YmFmOGU0OTEzIiwidXNlciI6MTU1LCJleHAiOjE2NjczMzk5MjMuNDY1MTk3fQ.pFnEvMoYdImTArmhDBArGHkwqbMLYX0Q2rZ7SbrE4UinroiFMBeyy22SGs6Yb4N81bfvxiZFYiRQ-zkfnolF3g\",\n    \"token\": \"eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoidG9rZW4iLCJ0b2tlbl9pZCI6IjQxNGIyMDRiLWY2NGUtNGIyNS1hMjk5LWMwNmJhZjhlNDkxMyIsImNsYWltcyI6WyJDb21wYW55Il0sInVzZXIiOjE1NSwiZXhwIjoxNjY3MzI5MTIzLjQ2NTAwM30.Za8zCluEdFXgS0msm6Q6tWbWUtTOEPKpnATECRzKCI-07Z0jaUBvy3dexdhdRVU2UG1Z3_-c4cr4DCWl0YNX5A\"\n}"
+				}
+			]
+		}
+	]
+}

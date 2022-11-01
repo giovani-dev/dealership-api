@@ -1,0 +1,424 @@
+{
+	"info": {
+		"_postman_id": "7a9a3cdf-5bde-4add-9c46-16c9516c4559",
+		"name": "Vehicle",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11940350"
+	},
+	"item": [
+		{
+			"name": "Buy Vehicle",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"model\": \"Hatch\",\r\n    \"color\": \"Blue\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/vehicle/buy",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"vehicle",
+						"buy"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Buy Vehicle successful",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"model\": \"Hatch\",\r\n    \"color\": \"Blue\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/vehicle/buy",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"vehicle",
+								"buy"
+							]
+						}
+					},
+					"status": "CREATED",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 15:59:04 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"color\": \"Blue\",\n    \"id\": 25,\n    \"model\": \"Hatch\"\n}"
+				},
+				{
+					"name": "Buy Vehicle invalid model",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"model\": \"moto\",\r\n    \"color\": \"Blue\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/vehicle/buy",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"vehicle",
+								"buy"
+							]
+						}
+					},
+					"status": "UNPROCESSABLE ENTITY",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 15:59:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "183"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"ctx\": {\n            \"given\": \"moto\",\n            \"permitted\": [\n                \"Hatch\",\n                \"Sedan\",\n                \"Convertible\"\n            ]\n        },\n        \"loc\": [\n            \"model\"\n        ],\n        \"msg\": \"unexpected value; permitted: 'Hatch', 'Sedan', 'Convertible'\",\n        \"type\": \"value_error.const\"\n    }\n]"
+				},
+				{
+					"name": "Buy Vehicle invalid color",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"model\": \"Hatch\",\r\n    \"color\": \"verde\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/vehicle/buy",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"vehicle",
+								"buy"
+							]
+						}
+					},
+					"status": "UNPROCESSABLE ENTITY",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 15:59:49 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "168"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"ctx\": {\n            \"given\": \"verde\",\n            \"permitted\": [\n                \"Yelow\",\n                \"Blue\",\n                \"Gray\"\n            ]\n        },\n        \"loc\": [\n            \"color\"\n        ],\n        \"msg\": \"unexpected value; permitted: 'Yelow', 'Blue', 'Gray'\",\n        \"type\": \"value_error.const\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get avaible vehicles to sell",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/vehicle/to-sell",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"vehicle",
+						"to-sell"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get avaible vehicles to sell",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/vehicle/to-sell",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"vehicle",
+								"to-sell"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 16:01:41 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "116"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"length\": 5,\n    \"page\": 0,\n    \"results\": [\n        {\n            \"color\": \"Blue\",\n            \"id\": 25,\n            \"model\": \"Hatch\"\n        },\n        {\n            \"color\": \"Blue\",\n            \"id\": 26,\n            \"model\": \"Hatch\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Sell vehicle",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"client_id\": 5,\r\n    \"vehicles\": [32, 33, 34]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/vehicle/sell",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"vehicle",
+						"sell"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Sell vehicle for a client with more than 3 vehicles",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\": 4,\r\n    \"vehicles\": [29, 30, 31]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/vehicle/sell",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"vehicle",
+								"sell"
+							]
+						}
+					},
+					"status": "BAD REQUEST",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 16:20:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "123"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"loc\": [\n        \"vehicles\"\n    ],\n    \"msg\": \"Limit of 3 vehicles has exceeded, please do buy any vehicle\",\n    \"type\": \"validation.invalid_input\"\n}"
+				},
+				{
+					"name": "Sell vehicle successful",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\": 5,\r\n    \"vehicles\": [32, 33, 34]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/vehicle/sell",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"vehicle",
+								"sell"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 16:21:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "55"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"client_id\": 5,\n    \"company_id\": 168,\n    \"vehicles\": [\n        32,\n        33,\n        34\n    ]\n}"
+				}
+			]
+		}
+	]
+}
