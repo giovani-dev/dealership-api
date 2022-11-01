@@ -11,8 +11,6 @@ class UserRouter(Starter):
     def start(self):
         @self.app.route("/user/seller/<int:company_id>", methods=["POST"])
         async def create_seller_user(company_id: int):
-            if not request.is_json:
-                return None, 422
             content = request.get_json()
             content.update({"company_id": company_id})
             user = UserFace(content)
@@ -24,8 +22,6 @@ class UserRouter(Starter):
 
         @self.app.route("/user/company", methods=["POST"])
         async def create_company_user():
-            if not request.is_json:
-                return None, 422
             user = UserFace(request.get_json())
             callback = await user.create_company()
             try:
