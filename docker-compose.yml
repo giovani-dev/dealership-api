@@ -1,0 +1,49 @@
+version: "3.8"
+services:
+  database:
+    container_name: dealership-mysql
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_PWD}
+      - MYSQL_DATABASE=${MYSQL_DEFAULT_DB}
+  test:
+    container_name: dealership-app-tester
+    build:
+      # context: tests
+      dockerfile: test.Dockerfile
+    environment:
+      - MYSQL_PWD=${MYSQL_PWD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_DEFAULT_DB=${MYSQL_DEFAULT_DB}
+      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_PORT=${MYSQL_PORT}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - JWT_TOKEN_TIME_TO_EXPIRE=${JWT_TOKEN_TIME_TO_EXPIRE}
+      - JWT_REFRESH_TOKEN_TIME_TO_EXPIRE=${JWT_REFRESH_TOKEN_TIME_TO_EXPIRE}
+      - APP_HOST=${APP_HOST}
+      - APP_PORT=${APP_PORT}
+      - ENV=${ENV}
+    depends_on:
+      - database
+  dealership:
+    container_name: dealership-app
+    build: .
+    depends_on:
+      - database
+      - test
+    ports:
+      - "8080:8080"
+    environment:
+      - MYSQL_PWD=${MYSQL_PWD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_DEFAULT_DB=${MYSQL_DEFAULT_DB}
+      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_PORT=${MYSQL_PORT}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - JWT_TOKEN_TIME_TO_EXPIRE=${JWT_TOKEN_TIME_TO_EXPIRE}
+      - JWT_REFRESH_TOKEN_TIME_TO_EXPIRE=${JWT_REFRESH_TOKEN_TIME_TO_EXPIRE}
+      - APP_HOST=${APP_HOST}
+      - APP_PORT=${APP_PORT}
+      - ENV=${ENV}
