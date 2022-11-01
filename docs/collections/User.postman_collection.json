@@ -1,0 +1,578 @@
+{
+	"info": {
+		"_postman_id": "76b98bb8-8798-43b0-9829-5f88c29813b7",
+		"name": "User",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11940350"
+	},
+	"item": [
+		{
+			"name": "Create seller",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\": \"123\",\r\n    \"name\": \"dnasdnasd\",\r\n    \"email\": \"{{$randomEmail}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/user/seller/:company_id",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user",
+						"seller",
+						":company_id"
+					],
+					"variable": [
+						{
+							"key": "company_id",
+							"value": "168"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create seller with invalid company",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"123\",\r\n    \"name\": \"dnasdnasd\",\r\n    \"email\": \"{{$randomEmail}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/seller/:company_id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"seller",
+								":company_id"
+							],
+							"variable": [
+								{
+									"key": "company_id",
+									"value": "41"
+								}
+							]
+						}
+					},
+					"status": "BAD REQUEST",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 15:23:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "89"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"loc\": [\n        \"company_id\"\n    ],\n    \"msg\": \"Company does not exist\",\n    \"type\": \"validation.does_not_exist\"\n}"
+				},
+				{
+					"name": "Create seller successful",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"123\",\r\n    \"name\": \"dnasdnasd\",\r\n    \"email\": \"{{$randomEmail}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/seller/:company_id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"seller",
+								":company_id"
+							],
+							"variable": [
+								{
+									"key": "company_id",
+									"value": "119"
+								}
+							]
+						}
+					},
+					"status": "CREATED",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 15:23:35 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "85"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"company_id\": 119,\n    \"email\": \"Roberto.OReilly@hotmail.com\",\n    \"id\": 110,\n    \"name\": \"dnasdnasd\"\n}"
+				},
+				{
+					"name": "Create seller with invalid e-mail",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"123\",\r\n    \"name\": \"dnasdnasd\",\r\n    \"email\": \"invalid.email\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/seller/:company_id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"seller",
+								":company_id"
+							],
+							"variable": [
+								{
+									"key": "company_id",
+									"value": "119"
+								}
+							]
+						}
+					},
+					"status": "UNPROCESSABLE ENTITY",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 15:24:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "90"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"loc\": [\n            \"email\"\n        ],\n        \"msg\": \"value is not a valid email address\",\n        \"type\": \"value_error.email\"\n    }\n]"
+				},
+				{
+					"name": "Create seller without data",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/seller/:company_id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"seller",
+								":company_id"
+							],
+							"variable": [
+								{
+									"key": "company_id",
+									"value": "119"
+								}
+							]
+						}
+					},
+					"status": "UNPROCESSABLE ENTITY",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 15:24:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "214"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"loc\": [\n            \"password\"\n        ],\n        \"msg\": \"field required\",\n        \"type\": \"value_error.missing\"\n    },\n    {\n        \"loc\": [\n            \"name\"\n        ],\n        \"msg\": \"field required\",\n        \"type\": \"value_error.missing\"\n    },\n    {\n        \"loc\": [\n            \"email\"\n        ],\n        \"msg\": \"field required\",\n        \"type\": \"value_error.missing\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Create company",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": {\r\n        \"password\": \"123\",\r\n        \"name\": \"{{$randomFirstName}}\",\r\n        \"email\": \"{{$randomEmail}}\"\r\n    },\r\n    \"company\": {\r\n        \"name\": \"Test company\",\r\n        \"cnpj\": \"1\",\r\n        \"owner_name\": \"{{$randomFirstName}}\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/user/company",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user",
+						"company"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create company successful",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": {\r\n        \"password\": \"123\",\r\n        \"name\": \"{{$randomFirstName}}\",\r\n        \"email\": \"{{$randomEmail}}\"\r\n    },\r\n    \"company\": {\r\n        \"name\": \"Test company\",\r\n        \"cnpj\": \"1\",\r\n        \"owner_name\": \"{{$randomFirstName}}\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/company",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"company"
+							]
+						}
+					},
+					"status": "CREATED",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 15:16:02 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "164"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"company\": {\n        \"cnpj\": \"1\",\n        \"id\": 119,\n        \"name\": \"Test company\",\n        \"owner_name\": \"Patience\"\n    },\n    \"user\": {\n        \"company_id\": 119,\n        \"email\": \"Tyreek_Zulauf@gmail.com\",\n        \"id\": 105,\n        \"name\": \"Arvel\"\n    }\n}"
+				},
+				{
+					"name": "Create company with user invalid e-mail",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": {\r\n        \"password\": \"123\",\r\n        \"name\": \"{{$randomFirstName}}\",\r\n        \"email\": \"email.invalido\"\r\n    },\r\n    \"company\": {\r\n        \"name\": \"Test company\",\r\n        \"cnpj\": \"1\",\r\n        \"owner_name\": \"{{$randomFirstName}}\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/company",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"company"
+							]
+						}
+					},
+					"status": "UNPROCESSABLE ENTITY",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 15:18:04 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "97"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"loc\": [\n            \"user\",\n            \"email\"\n        ],\n        \"msg\": \"value is not a valid email address\",\n        \"type\": \"value_error.email\"\n    }\n]"
+				},
+				{
+					"name": "Create company without user and company",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/company",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"company"
+							]
+						}
+					},
+					"status": "UNPROCESSABLE ENTITY",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 15:21:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "143"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"loc\": [\n            \"company\"\n        ],\n        \"msg\": \"field required\",\n        \"type\": \"value_error.missing\"\n    },\n    {\n        \"loc\": [\n            \"user\"\n        ],\n        \"msg\": \"field required\",\n        \"type\": \"value_error.missing\"\n    }\n]"
+				},
+				{
+					"name": "Create company without user and company data",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": {\r\n    },\r\n    \"company\": {\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/company",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"company"
+							]
+						}
+					},
+					"status": "UNPROCESSABLE ENTITY",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 15:22:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "478"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"loc\": [\n            \"company\",\n            \"name\"\n        ],\n        \"msg\": \"field required\",\n        \"type\": \"value_error.missing\"\n    },\n    {\n        \"loc\": [\n            \"company\",\n            \"cnpj\"\n        ],\n        \"msg\": \"field required\",\n        \"type\": \"value_error.missing\"\n    },\n    {\n        \"loc\": [\n            \"company\",\n            \"owner_name\"\n        ],\n        \"msg\": \"field required\",\n        \"type\": \"value_error.missing\"\n    },\n    {\n        \"loc\": [\n            \"user\",\n            \"password\"\n        ],\n        \"msg\": \"field required\",\n        \"type\": \"value_error.missing\"\n    },\n    {\n        \"loc\": [\n            \"user\",\n            \"name\"\n        ],\n        \"msg\": \"field required\",\n        \"type\": \"value_error.missing\"\n    },\n    {\n        \"loc\": [\n            \"user\",\n            \"email\"\n        ],\n        \"msg\": \"field required\",\n        \"type\": \"value_error.missing\"\n    }\n]"
+				},
+				{
+					"name": "Create company cnpj already exist",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": {\r\n        \"password\": \"123\",\r\n        \"name\": \"{{$randomFirstName}}\",\r\n        \"email\": \"{{$randomEmail}}\"\r\n    },\r\n    \"company\": {\r\n        \"name\": \"Test company\",\r\n        \"cnpj\": \"1\",\r\n        \"owner_name\": \"{{$randomFirstName}}\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/company",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"company"
+							]
+						}
+					},
+					"status": "BAD REQUEST",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 15:24:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "96"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"loc\": [\n        \"company\",\n        \"cnpj\"\n    ],\n    \"msg\": \"This company already exist\",\n    \"type\": \"validation.already_exist\"\n}"
+				}
+			]
+		}
+	]
+}

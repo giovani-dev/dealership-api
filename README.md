@@ -1,5 +1,8 @@
 # dealership-api
 
+<br>
+Essa api tem como objetivo realizar a venda de veiculos a clientes em uma concessionaria. Cada concessionaria tem seus respectivos vendedosres e veiculos.
+
 - #### Features
 
   - Autenticação
@@ -16,6 +19,7 @@
     `A venda de veiculos para clientes é de responsabilidade do vendedor, sendo limitado a posse de até 3 veiculos por cliente, caso o cliente tenha 3 veiuclos a venda será bloqueada. A compra de veiuclos fica vedado ao escopo da concessionaria, assim na hora da venda a troca de donos será realizada.`
 
 - #### Como executar o projeto?
+
   - Utilizando docker compose
     <br>
     `docker-compose --env-file .env up`
@@ -27,3 +31,6 @@
         pip install -r requirements.txt
         python -m gunicorn -w 4 -b 127.0.0.1:8080 main:app
     ```
+
+- #### Postman Collaction
+  - https://www.postman.com/dealership-api/workspace/dealership-api/overview

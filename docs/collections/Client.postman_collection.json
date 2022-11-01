@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "41af84ed-0a51-4abc-97cf-a85c628ddb78",
+		"name": "Client",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11940350"
+	},
+	"item": [
+		{
+			"name": "Create client",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Giovani\",\r\n    \"last_name\": \"Liskoski Zanini\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/client",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"client"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create client",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Giovani\",\r\n    \"last_name\": \"Liskoski Zanini\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/client",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"client"
+							]
+						}
+					},
+					"status": "CREATED",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 16:02:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "56"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 3,\n    \"last_name\": \"Liskoski Zanini\",\n    \"name\": \"Giovani\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get avaible clients",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/client",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"client"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get avaible clients",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/client",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"client"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "gunicorn"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 01 Nov 2022 16:02:24 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "202"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"length\": 5,\n    \"page\": 0,\n    \"results\": [\n        {\n            \"id\": 1,\n            \"last_name\": \"Liskoski Zanini\",\n            \"name\": \"Giovani\"\n        },\n        {\n            \"id\": 2,\n            \"last_name\": \"Liskoski Zanini\",\n            \"name\": \"Giovani\"\n        },\n        {\n            \"id\": 3,\n            \"last_name\": \"Liskoski Zanini\",\n            \"name\": \"Giovani\"\n        }\n    ]\n}"
+				}
+			]
+		}
+	]
+}
