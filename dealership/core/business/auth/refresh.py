@@ -19,7 +19,7 @@ class Refresh(Core):
     ) -> Callback[List[Error] | CredentialsDto]:
         token = jwt.decode(
             token=data.token,
-            options={"verify_signature": False},
+            options={"verify_signature": False, 'verify_exp': False},
             key=Settings.JWT_SECRET_KEY,
         )
         try:
