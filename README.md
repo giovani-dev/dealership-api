@@ -1,12 +1,13 @@
 # dealership-api
 
+<br>
+```Essa api tem como objetivo realizar a venda de veiculos a clientes em uma concessionaria. Cada concessionaria tem seus respectivos vendedosres e veiculos.```
+
 - #### Features
 
-    <br>
-    ```Essa api tem como objetivo realizar a venda de veiculos a clientes em uma concessionaria. Cada concessionaria tem seus respectivos vendedosres e veiculos.```
   - Autenticação
     <br>
-    `Foram implementados as funcionalidades de login e verificação de credenciais baseado em claims`
+    ```Foram implementados as funcionalidades de login e verificação de credenciais baseado em claims```
   - Usuarios
     <br>
     `Existem dois tipos de usuarios, vendedor responsavel pelo cadastro, listagem de clientes, assim como a venda de veiculos e listagem de carros disponiveis para a venda. E o usuario dono da consessionaria, responsavel pela compara de veiculos para a propria.`
